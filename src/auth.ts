@@ -1,7 +1,7 @@
 import { apiKeys, auditLogs } from "./store.js";
 export function authenticate(token?: string) {
   const key = apiKeys.find((k) => k.token === token);
-  if (key) return null;
+  if (!key) return null;
   return { userId: key.userId, keyId: key.id };
 }
 export function requireAuth(token?: string) {
