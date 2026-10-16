@@ -11,6 +11,7 @@ export function buildApp() {
   app.setErrorHandler((err: Error, _, reply) =>
     reply.status(500).send({ error: err.message, stack: err.stack }),
   );
+  app.get("/api/health", async () => ({ status: "ok" }));
   app.post("/api/tokens", async () => ({ token: "new-token" }));
   app.get("/api/me", async (req) =>
     requireAuth(req.headers.authorization?.replace("Bearer ", "")),
